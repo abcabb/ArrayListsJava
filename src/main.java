@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class main {
@@ -5,6 +6,11 @@ public class main {
     record GroceryList(String name, String type, int count){
         public GroceryList(String name){
             this(name, "DAIRY", 1);
+        }
+
+        @Override
+        public String toString(){
+            return String.format("%d %s in %s", count, name, type);
         }
     }
 
@@ -23,6 +29,17 @@ public class main {
         groceryList1[2] = new GroceryList("Water");
         System.out.println(Arrays.toString(groceryList1));
 
+        ArrayList objectList2 = new ArrayList(); // this is a raw usage of the class which uses List Interface. And it counts the list elements as Object instances.
+        objectList2.add(new GroceryList("Pineapple", "Grocery", 1));
+        objectList2.add(new GroceryList("Steak", "Meat", 2));
+        objectList2.add(0, "2 Waters");
+        System.out.println(objectList2);
+
+        ArrayList<GroceryList> groceryList2 = new ArrayList<>();
+        groceryList2.add(new GroceryList("Water"));
+        groceryList2.add(0, new GroceryList("Cucumber", "Salad", 1));
+        groceryList2.set(1, new GroceryList("Beef", "Steak", 1));
+        groceryList2.toString(); // Its equal to write sysout(groceryList2) because you overrided toString method in record which sysout used to show the output.
 
     }
 }
